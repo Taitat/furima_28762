@@ -40,7 +40,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_one :purchase
+- has_many :purchase
 
 
 
@@ -49,8 +49,8 @@ Things you may want to cover:
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
 | user                | references | null: false, foreign_key: true |
-| item_name           | string     | null: false                    |
-| item_description    | text       | null: false                    |
+| name                | string     | null: false                    |
+| description         | text       | null: false                    |
 | images_id           | integer    | null: false                    |
 | categories_id       | integer    | null: false                    |
 | conditions_id       | integer    | null: false                    |
@@ -76,7 +76,7 @@ Things you may want to cover:
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| image               | text       | null: false                    |
+| image               | string     | null: false                    |
 | item                | references | null: false, foreign_key: true |
 
 ### Association
