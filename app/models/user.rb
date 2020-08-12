@@ -10,11 +10,9 @@ class User < ApplicationRecord
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
   validates_format_of :last_name, with: NAME_REGEX
   validates_format_of :first_name, with: NAME_REGEX
-
   NAME_KANA_REGEX = /\A[ァ-ン]+\z/.freeze
   validates_format_of :last_name_kana, with: NAME_KANA_REGEX
   validates_format_of :first_name_kana, with: NAME_KANA_REGEX
-
   EMAIL_REGEX = /.+@.+/.freeze
   validates_format_of :email, with: EMAIL_REGEX
 
