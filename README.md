@@ -51,7 +51,6 @@ Things you may want to cover:
 | user                | references | null: false, foreign_key: true |
 | name                | string     | null: false                    |
 | description         | text       | null: false                    |
-| images_id           | integer    | null: false                    |
 | categories_id       | integer    | null: false                    |
 | conditions_id       | integer    | null: false                    |
 | postage_payers_id   | integer    | null: false                    |
@@ -62,7 +61,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_many :images
+- has_one_attached :image
 - has_one :purchase
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
