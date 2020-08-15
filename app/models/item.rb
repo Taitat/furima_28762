@@ -11,11 +11,12 @@ class Item < ApplicationRecord
     belongs_to_active_hash :postage_payer
     belongs_to_active_hash :prefecture
   
-validates :images, presence: true
+validates :image, presence: true
 validates :user, presence: true
+validates :price, numericality: {greater_than_or_equal_to: 300,less_than_or_equal_to: 9999999}
 
-validates :categories,:conditions,:handling_times,
-          :postage_payers,:prefecture, presence: true,numericality: { other_than: 1}
+validates :categories_id,:conditions_id,:handling_times_id,
+          :postage_payers_id,:prefecture_id, presence: true,numericality: { other_than: 1}
 
 
 
