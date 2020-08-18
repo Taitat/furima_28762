@@ -19,6 +19,16 @@ class ItemsController < ApplicationController
 
   end
 
+  def account
+    
+    price = params[:price]
+    add_tax_price = (price.to_i * 0.1).floor
+    profit = (price.to_i * 0.9).floor
+    
+    render json: {add_tax_price: add_tax_price, profit: profit}
+    
+  end
+
 
   private
   def item_params
