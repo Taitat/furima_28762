@@ -3,6 +3,11 @@ function account(){
   const price = document.getElementById("item-price");
   const add_tax_price = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit"); 
+
+  if (price.getAttribute("data-load") != null){
+    return null;
+  }
+  price.setAttribute("data-load", "true");
   
 price.addEventListener('input',(e) => {
   const itemPrice = document.getElementById("item-price").value;
