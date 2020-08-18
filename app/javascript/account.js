@@ -22,7 +22,9 @@ price.addEventListener('input',(e) => {
   XHR.onerror = () => {
     alert("Request failed");
   };
-})
+  e.preventDefault();
+
+});
 }
 
-window.addEventListener("load", account);
+setInterval(account,1000);
