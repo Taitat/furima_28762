@@ -5,7 +5,7 @@ function account(){
   const profit = document.getElementById("profit"); 
   
 price.addEventListener('input',(e) => {
-  itemPrice = document.getElementById("item-price").value;
+  const itemPrice = document.getElementById("item-price").value;
   const XHR = new XMLHttpRequest();
   XHR.open("GET",`/items/account?price=${itemPrice}`, true);
   XHR.responseType = "json";

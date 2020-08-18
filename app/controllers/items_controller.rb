@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -20,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def account
-    
-    price = params[:price]
-    add_tax_price = (price.to_i * 0.1).floor
-    profit = (price.to_i * 0.9).floor
-    
+    item_price = params[:price]
+    add_tax_price = (item_price.to_i * 0.1).floor
+    profit = (item_price.to_i * 0.9).floor
     render json: {add_tax_price: add_tax_price, profit: profit}
     
   end
@@ -34,7 +33,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :name,:image,:description,:categories_id,:conditions_id,:postage_payers_id,
-      :prefecture_id,:handling_times_id,:price
+      :prefecture_id,:handling_times_id, :price
     ).merge(user_id: current_user.id)
   end
 
