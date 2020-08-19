@@ -11,16 +11,6 @@ RSpec.describe Item, type: :model do
       it '全ての項目が存在すれば商品を出品できる' do
         expect(@item).to be_valid
       end
-
-      it '価格が300円以上なら出品できる' do
-        @item.price = 300
-        expect(@item).to be_valid
-      end
-
-      it '価格が9,999,999円以下なら出品できる' do
-        @item.price = 9_999_999
-        expect(@item).to be_valid
-      end
     end
 
     context '商品出品がうまくいかないとき' do
@@ -34,12 +24,6 @@ RSpec.describe Item, type: :model do
         @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
-      end
-
-      it '商品画像がないと出品できない' do
-        @item.image = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
 
       it 'カテゴリーがないと出品できない' do

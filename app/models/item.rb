@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :postage_payer
   belongs_to_active_hash :prefecture
 
-  validates :image, :user, :name, :description, presence: true
+  validates :user, :name, :description, presence: true
 
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
