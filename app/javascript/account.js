@@ -1,35 +1,14 @@
-function account(){
+document.addEventListener('keydown', function(){
 
-  const price = document.getElementById("item-price");
+const price = document.getElementById("item-price");
+price.addEventListener('input', (e) => {
+  const itemPrice = price.value
   const add_tax_price = document.getElementById("add-tax-price");
   const profit = document.getElementById("profit"); 
-
-  if (price.getAttribute("data-load") != null){
-    return null;
-  }
-  price.setAttribute("data-load", "true");
+  add_tax_price.innerHTML = Math.floor(itemPrice * 0.1)
+  profit.innerHTML = Math.floor(itemPrice * 0.9)
   
-price.addEventListener('input',(e) => {
-  const itemPrice = document.getElementById("item-price").value;
-  const XHR = new XMLHttpRequest();
-  XHR.open("GET",`/items/account?price=${itemPrice}`, true);
-  XHR.responseType = "json";
-  XHR.send();
-  XHR.onload = () => {
-    if (itemPrice >= 10){
-    add_tax_price.innerHTML = XHR.response.add_tax_price;
-    profit.innerHTML = XHR.response.profit;
-    } else{
-    add_tax_price.innerHTML = 0;
-    profit.innerHTML = 0;
-    }
-  }
-  XHR.onerror = () => {
-    alert("Request failed");
-  };
-  e.preventDefault();
 
 });
-}
 
-setInterval(account,1000);
+})
