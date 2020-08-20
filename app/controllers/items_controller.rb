@@ -6,14 +6,6 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order('created_at DESC')
   end
 
-  def show
-    
-  end
-
-  def edit
-    
-  end
-
   def update
     if @item.update(item_params)
       redirect_to action: :show
