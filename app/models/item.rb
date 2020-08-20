@@ -14,6 +14,6 @@ class Item < ApplicationRecord
 
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  validates :categories_id, :conditions_id, :handling_times_id,
-            :postage_payers_id, :prefecture_id, presence: true, numericality: { other_than: 1 }
+  validates :category_id, :condition_id, :handling_time_id,
+            :postage_payer_id, :prefecture_id, presence: true, numericality: { other_than: 1 }
 end
