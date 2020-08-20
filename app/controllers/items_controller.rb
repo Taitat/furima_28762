@@ -6,29 +6,22 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])  
+    @item = Item.find(params[:id])
   end
 
   def edit
-    
     @item = Item.find(params[:id])
-    
   end
 
   def update
-
     @item = Item.find(params[:id])
-    
+
     if @item.update(item_params)
       redirect_to action: :show
     else
-      render :edit,item: @item
+      render :edit, item: @item
     end
-  
-
-
   end
-
 
   def new
     @item = Item.new
