@@ -1,13 +1,17 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_item, only: [:show,:edit,:update]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
 
-  def show
-    @item = Item.find(params[:id])
-    # @category = Category.find(@item.categories_id).name
+  def update
+    if @item.update(item_params)
+      redirect_to action: :show
+    else
+      render :edit, item: @item
+    end
   end
 
   def new
@@ -22,6 +26,10 @@ class ItemsController < ApplicationController
       render :new
 
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def account
