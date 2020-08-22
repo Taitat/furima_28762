@@ -11,4 +11,12 @@ class OrderInformation
     validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input half-width characters."}
   end
 
+  def save
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create(
+      post_code: post_code, prefecture_id: prefecture_id, city: city, 
+      address_line: address_line, building_name: building_name, 
+      phone_number: phone_number, order_id: order.id)
+  end
+
 end
