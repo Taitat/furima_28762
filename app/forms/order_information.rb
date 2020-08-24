@@ -1,14 +1,15 @@
 class OrderInformation
 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address_line, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address_line, :building_name, :phone_number,:order_id,:token
 
  
 
   with_options presence: true do
-    validates :city,:phone_number,:order_id, :user_id, :item_id
+    validates :city, :user_id, :item_id
     validates :prefecture_id, numericality: { other_than: 1 }
-    validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Input half-width characters."}
+    validates :phone_number,format:{with: /\A\d{1,11}\z/,messages: "is invalid. Input correct number."}
+    validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, messages: "is invalid. Input half-width characters."}
   end
 
   def save

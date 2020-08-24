@@ -90,6 +90,7 @@ Things you may want to cover:
 | ------------------- | ---------- | ------------------------------ |
 | item                | references | null: false, foreign_key: true |
 | user                | references | null: false, foreign_key: true |
+| price               | integer    | null: false                    |
 
 ### Association
 
