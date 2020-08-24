@@ -4,10 +4,12 @@ class OrderInformation
                 :city, :address_line, :building_name, :phone_number, :order_id, :token
 
   with_options presence: true do
-    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/, messages: 'is invalid. Input half-width characters.' }
+    POST_CODE_REGEX = /\A\d{3}[-]\d{4}\z/
+    PHONE_NUMBER_REGEX = /\A\d{1,11}\z/
+    validates :post_code, format: { with: POST_CODE_REGEX, messages: 'is invalid. Input half-width characters.' }
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :city, :address_line, :token, :user_id, :item_id
-    validates :phone_number, format: { with: /\A\d{1,11}\z/, messages: 'is invalid. Input correct number.' }
+    validates :phone_number, format: { with: PHONE_NUMBER_REGEX , messages: 'is invalid. Input correct number.' }
   end
 
   def save
