@@ -1,12 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_item, only: [:index,:create,:move_to_index]
+  before_action :move_to_index
+
+
   def index
-    @item = Item.find(params[:item_id])
     @order = OrderInformation.new
-    
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderInformation.new(
       post_code:          order_params[:post_code],
       prefecture_id:      order_params[:prefecture_id],
@@ -18,15 +20,14 @@ class OrdersController < ApplicationController
       user_id:            current_user.id,
     )
     
-    
     if @order.valid?
-      binding.pry
+      ActiveRecord::Base.transaction do
       order_item
-      binding.pry
-      @order.save
+      @order.save!
       return redirect_to root_path
+      end
     else
-      render 'index' 
+      render action: :index
     end
 
   end
@@ -40,11 +41,24 @@ class OrdersController < ApplicationController
 
   def order_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp::Charge.create(
+    Payjp::Charge.create!(
       amount: @item.price,
       card: params[:token],
       currency:'jpy'
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    if Order.exists?(item_id: @item.id)
+      redirect_to root_path
+    elsif @item.user.id == current_user.id
+      redirect_to root_path
+    end
+  end
+
 
 end
