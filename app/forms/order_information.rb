@@ -8,7 +8,7 @@ class OrderInformation
   with_options presence: true do
     validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/, messages: "is invalid. Input half-width characters."}
     validates :prefecture_id, numericality: { other_than: 1 }
-    validates :city, :token, :user_id, :item_id
+    validates :city, :address_line, :token, :user_id, :item_id
     validates :phone_number,format:{with: /\A\d{1,11}\z/,messages: "is invalid. Input correct number."}
     
   end
