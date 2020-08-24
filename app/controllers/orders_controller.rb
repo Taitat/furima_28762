@@ -16,13 +16,13 @@ class OrdersController < ApplicationController
       building_name: order_params[:building_name],
       phone_number: order_params[:phone_number],
       item_id: @item.id,
-      user_id: current_user.id
+      user_id: current_user.id,
+      token: order_params[:token]
     )
-
     if @order.valid?
       ActiveRecord::Base.transaction do
         order_item
-        @order.save!
+        @order.save
         return redirect_to root_path
       end
     else
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 
   def order_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    Payjp::Charge.create!(
+    Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
       currency: 'jpy'
