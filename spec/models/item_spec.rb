@@ -27,19 +27,19 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーがないと出品できない' do
-        @item.categories_id = nil
+        @item.category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Categories can't be blank")
       end
 
       it '状態がないと出品できない' do
-        @item.conditions_id = nil
+        @item.condition_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Conditions can't be blank")
       end
 
       it '配送料負担がないと出品できない' do
-        @item.postage_payers_id = nil
+        @item.postage_payer_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage payers can't be blank")
       end

@@ -40,7 +40,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :purchase
+- has_many :order
 
 
 
@@ -51,18 +51,18 @@ Things you may want to cover:
 | user                | references | null: false, foreign_key: true |
 | name                | string     | null: false                    |
 | description         | text       | null: false                    |
-| categories_id       | integer    | null: false                    |
-| conditions_id       | integer    | null: false                    |
-| postage_payers_id   | integer    | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| postage_payer_id    | integer    | null: false                    |
 | prefecture_id       | integer    | null: false                    |
-| handling_times_id   | integer    | null: false                    |
+| handling_time_id    | integer    | null: false                    |
 | price               | integer    | null: false                    |
 
 ### Association
 
 - belongs_to :user
 - has_one_attached :image
-- has_one :purchase
+- has_one :order
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :handling_time
@@ -84,12 +84,13 @@ Things you may want to cover:
 
 
 
-## purchases テーブル
+## orders テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
 | item                | references | null: false, foreign_key: true |
 | user                | references | null: false, foreign_key: true |
+| price               | integer    | null: false                    |
 
 ### Association
 
@@ -106,13 +107,14 @@ Things you may want to cover:
 | post_code           | string     | null: false                    |
 | prefectures_id      | integer    | null: false, foreign_key: true |
 | city                | string     | null: false                    |
+| address_line        | string     | null: false                    |
 | building_name       | string     |                                |
 | phone_number        | string     | null: false, uniqueness: true  |
-| purchase            | references | null: false, foreign_key: true |
+| order               | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 - belongs_to_active_hash :prefecture
 
 
