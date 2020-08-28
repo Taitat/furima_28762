@@ -1,3 +1,5 @@
+if (document.URL.match( /order/ )) {
+
 const order = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
@@ -35,3 +37,4 @@ const order = () => {
 };
 
 window.addEventListener('load',order);
+}
