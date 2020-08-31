@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :order, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -20,7 +20,7 @@ class Item < ApplicationRecord
             :postage_payer_id, :prefecture_id, presence: true, numericality: { other_than: 1 }
 
   def image_presence
-    unless self.image.attached?
+    unless self.images.attached?
       errors.add(:image, "can't be blank")
     end
   end
